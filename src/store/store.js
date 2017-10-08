@@ -39,6 +39,15 @@ export default new Vuex.Store({
       let index = rounds.indexOf(rounds.find((x) => x.id === round.id))
       rounds.splice(index, 1, round)
       state.rounds = rounds
+    },
+    createFixture: (state, round) => {
+      let fixture = {
+        home: {},
+        away: {},
+        score: {}
+      }
+      round.fixtures.push(fixture)
+      state.editRound(round)
     }
   },
   actions: {
@@ -47,6 +56,9 @@ export default new Vuex.Store({
     },
     editRound: ({ commit }, round) => {
       commit('editRound', round)
+    },
+    createFixture: ({ commit }, round) => {
+      commit('createFixture', round)
     }
   }
 })

@@ -43,18 +43,27 @@
 
     <div class="divider"></div>
 
-    <!--<div class="container">-->
-      <!--<h2 class="s-title">Fixtures</h2>-->
-      <!--<div v-for="round in rounds" :key="round.id">-->
-          <!--<h4 class="s-title">Round {{ round.name }}</h4>-->
-          <!--<div class="columns">-->
-            <!--<div class="column col-sm-12 col-xl-6 col-4" v-for="fixture in round.fixtures">-->
-              <!--<fixture :key="fixture.id"></fixture>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--<div class="divider"></div>-->
-      <!--</div>&lt;!&ndash; .columns &ndash;&gt;-->
-    <!--</div>&lt;!&ndash; .container &ndash;&gt;-->
+    <div class="container" v-if="!noRounds()">
+      <h2 class="s-title">Fixtures</h2>
+      <div v-for="round in rounds" :key="round.id">
+          <h4 class="s-title">Round {{ round.name }}</h4>
+          <div class="columns">
+            <div class="column col-sm-12 col-xl-6 col-4" v-for="fixture in round.fixtures">
+              <fixture :key="fixture.id"></fixture>
+            </div>
+            <div class="column col-4 empty">
+              <div class="empty-icon">
+                <i class="icon icon-plus"></i>
+              </div>
+              <p class="empty-subtitle">Click the button to add a fixture</p>
+              <div class="empty-action">
+                <button class="btn btn-primary" v-on:click="createFixture(round)">Add Fixture</button>
+              </div>
+            </div><!-- .column -->
+          </div>
+        <div class="divider"></div>
+      </div><!-- .columns -->
+    </div><!-- .container -->
   </div><!-- .tournament -->
 </template>
 
@@ -78,7 +87,7 @@
     },
     methods: {
       ...mapActions([
-        'createRound'
+        'createRound', 'createFixture'
       ]),
       noRounds () {
         return this.rounds.length === 0
