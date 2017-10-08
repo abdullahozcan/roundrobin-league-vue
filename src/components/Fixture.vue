@@ -4,40 +4,54 @@
         <div class="panel-title">Day</div>
       </div>
       <div class="body">
-        <table class="table table-striped table-hover text-center">
+        <table v-if="!noMatches" class="table table-striped table-hover text-center">
           <thead>
               <th>Home</th>
               <th>Score</th>
               <th>Away</th>
           </thead>
           <tbody>
-          <tr>
-            <td class="col-5">Paris Saint-Germain</td>
-            <td>2 - 0</td>
-            <td class="col-5">Manchester United</td>
-          </tr>
+            <match :key="match.id" v-for="match in fixture.matches" v-bind:matchProp="match"></match>
           </tbody>
         </table>
-      </div>
+      </div><!-- .body -->
+    <div class="panel-footer">
+      <button class="btn btn-primary btn-block" @click="createMatch(fixture)">Add match</button>
+    </div>
   </div>
 </template>
 
 <script>
   import draggable from 'vuedraggable'
+  import match from './Match.vue'
+  import { mapActions } from 'vuex'
 
   export default {
     props: {
+      fixtureProp: {
+        type: Object,
+        required: true
+      }
     },
     data () {
       return {
+        fixture: this.fixtureProp
       }
     },
     computed: {
+      noMatches: {
+        get () {
+          return this.fixture.matches.length === 0
+        }
+      }
     },
     methods: {
+      ...mapActions([
+        'createMatch'
+      ])
     },
     components: {
-      draggable
+      draggable, match
     }
   }
 </script>

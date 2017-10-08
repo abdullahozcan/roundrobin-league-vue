@@ -42,12 +42,18 @@ export default new Vuex.Store({
     },
     createFixture: (state, round) => {
       let fixture = {
+        matches: []
+      }
+      round.fixtures.push(fixture)
+    },
+    createMatch: (state, fixture) => {
+      let match = {
+        id: 0,
         home: {},
         away: {},
         score: {}
       }
-      round.fixtures.push(fixture)
-      state.editRound(round)
+      fixture.matches.push(match)
     }
   },
   actions: {
@@ -59,6 +65,9 @@ export default new Vuex.Store({
     },
     createFixture: ({ commit }, round) => {
       commit('createFixture', round)
+    },
+    createMatch: ({ commit }, fixture) => {
+      commit('createMatch', fixture)
     }
   }
 })

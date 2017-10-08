@@ -40,7 +40,6 @@
     },
     computed: {
       noTeams: {
-        cache: false,
         get () {
           return this.round.teams.length === 0
         }
