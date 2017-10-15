@@ -31,6 +31,14 @@
       fixtureProp: {
         type: Object,
         required: true
+      },
+      roundId: {
+        type: Number,
+        required: true
+      },
+      teams: {
+        type: Array,
+        required: true
       }
     },
     data () {

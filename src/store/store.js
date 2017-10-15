@@ -11,8 +11,10 @@ export default new Vuex.Store({
       { id: 6, name: 'Manchester United' }, { id: 7, name: 'Liverpool' }, { id: 8, name: 'Chelsea' }, { id: 9, name: 'Arsenal' }, { id: 10, name: 'Tottenham' },
       { id: 11, name: 'Atletico Madrid' }, { id: 12, name: 'Real Madrid' }, { id: 13, name: 'Barcelona' },
       { id: 14, name: 'Bayern Munchen' }, { id: 15, name: 'Borussia Dortmund' },
-      { id: 16, name: 'Paris Saint-Germain' }, { id: 17, name: 'Monaco' }
-    ]
+      { id: 16, name: 'Paris Saint-Germain' }, { id: 17, name: 'Monaco' }, { id: 18, name: 'Atletico Bilbao' }
+    ],
+    keyword: '',
+    roundIdFilter: 0
   },
   getters: {
     rounds: (state) => {
