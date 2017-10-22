@@ -52,10 +52,9 @@ export default new Vuex.Store({
       state.rounds = rounds
     },
     createFixture: (state, round) => {
-      let fixture = {
-        matches: []
-      }
+      let fixture = { matches: [] }
       round.fixtures.push(fixture)
+      this.a.dispatch('createMatch', fixture)
     },
     createMatch: (state, fixture) => {
       let match = {
