@@ -1,10 +1,15 @@
 <template>
   <tr>
+    <td class="col-1">
+      <button class="btn btn-primary btn-action btn-sm" v-on:click="deleteMe">
+        <i class="icon icon-cross"></i>
+      </button>
+    </td>
     <td class="col-5">
       <v-select :on-change="changeHomeTeam" v-if="homeNotSelected" label="name" :options="availableTeams"></v-select>
       <span v-else="homeNotSelected">{{ match.home.name }}</span>
     </td>
-    <td class="col-2">
+    <td class="col-1">
       <span v-if="hasResult">{{ match.score }}</span>
       <input class="form-input text-center" v-else="hasResult" v-on:keyup.enter="updateResult"/>
     </td>
@@ -56,6 +61,9 @@
       },
       updateResult (event) {
         this.match.score = event.target.value
+      },
+      deleteMe () {
+        this.$emit('deleteMe', this.match)
       }
     },
     components: {

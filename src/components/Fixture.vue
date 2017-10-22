@@ -6,12 +6,13 @@
       <div class="body">
         <table v-if="!noMatches" class="table table-striped table-hover text-center">
           <thead>
+              <th></th>
               <th>Home</th>
               <th>Score</th>
               <th>Away</th>
           </thead>
           <tbody>
-            <match :key="match.id" v-for="match in fixture.matches" v-bind:matchProp="match"></match>
+            <match :key="match.id" v-for="match in fixture.matches" v-bind:matchProp="match" @deleteMe="deleteMatch"></match>
           </tbody>
         </table>
       </div><!-- .body -->
@@ -60,7 +61,13 @@
     methods: {
       ...mapActions([
         'createMatch'
-      ])
+      ]),
+      deleteMatch (match) {
+        let matches = this.fixture.matches
+        let index = matches.indexOf(matches.find((x) => x === match))
+        matches.splice(index, 1)
+        this.fixture.matches = matches
+      }
     },
     components: {
       draggable, match

@@ -1,6 +1,6 @@
 <template>
   <div class="round card">
-    <button class="btn btn-primary delete-btn" v-on:click="deleteRound"><i class="icon icon-cross"></i></button>
+    <button class="btn btn-primary delete-btn btn-sm" v-on:click="deleteRound"><i class="icon icon-cross"></i></button>
     <div class="card-header">
       <div class="card-title has-icon-left" v-if="nameEmpty">
         <input class="form-input input-lg" type="text" v-on:keyup.enter="setName" placeholder="Name of the round" :value="tempName" autofocus>
