@@ -1,9 +1,10 @@
 <template>
   <div class="round card">
+    <button class="btn btn-primary delete-btn" v-on:click="deleteRound"><i class="icon icon-cross"></i></button>
     <div class="card-header">
       <div class="card-title has-icon-left" v-if="nameEmpty">
-          <input class="form-input input-lg" type="text" v-on:keyup.enter="setName" placeholder="Name of the round" :value="tempName" autofocus>
-          <i class="form-icon icon icon-arrow-right"></i>
+        <input class="form-input input-lg" type="text" v-on:keyup.enter="setName" placeholder="Name of the round" :value="tempName" autofocus>
+        <i class="form-icon icon icon-arrow-right"></i>
       </div>
       <div class="card-title text-center" v-else="nameEmpty">
         <span class="h5">{{ round.name }}</span>
@@ -14,7 +15,7 @@
       <p v-show="noTeams">Drag a team under here</p>
       <draggable class="dragzone" :class="{ empty: noTeams }" :list="round.teams"
                  :options="{group: 'teams', draggable:'.draggable-team'}"
-      @change="updateRound">
+                 @change="updateRound">
         <span class="chip draggable-team" :value="team" v-for="team in round.teams" :key="team.id">{{ team.name }}</span>
       </draggable>
     </div>
@@ -50,7 +51,7 @@
     },
     methods: {
       ...mapActions([
-        'editRound'
+        'editRound', 'deleteRound'
       ]),
       setName (event) {
         this.round.name = event.target.value
@@ -62,6 +63,12 @@
       },
       updateRound () {
         this.$store.dispatch('editRound', this.round)
+      },
+      deleteRound () {
+        this.round.teams.forEach((team) => {
+          this.$store.dispatch('addTeam', team)
+        })
+        this.$store.dispatch('deleteRound', this.round)
       }
     },
     components: {
@@ -73,5 +80,15 @@
 <style scoped>
   .dragzone {
     min-height: 100px;
+  }
+  .round {
+    position: relative;
+  }
+  .round .delete-btn {
+    font-size: 12px;
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    border-radius: 15px;
   }
 </style>

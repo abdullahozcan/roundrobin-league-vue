@@ -25,6 +25,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    addTeam: (state, team) => {
+      state.teams.push(team)
+    },
     createRound: (state) => {
       let lastRoundId = state.rounds.length > 0 ? state.rounds[state.rounds.length - 1].id : 0
       lastRoundId++
@@ -40,6 +43,12 @@ export default new Vuex.Store({
       let rounds = state.rounds
       let index = rounds.indexOf(rounds.find((x) => x.id === round.id))
       rounds.splice(index, 1, round)
+      state.rounds = rounds
+    },
+    deleteRound: (state, round) => {
+      let rounds = state.rounds
+      let index = rounds.indexOf(rounds.find((x) => x.id === round.id))
+      rounds.splice(index, 1)
       state.rounds = rounds
     },
     createFixture: (state, round) => {
@@ -58,11 +67,17 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    addTeam: ({ commit }, team) => {
+      commit('addTeam', team)
+    },
     createRound: ({ commit }) => {
       commit('createRound')
     },
     editRound: ({ commit }, round) => {
       commit('editRound', round)
+    },
+    deleteRound: ({ commit }, round) => {
+      commit('deleteRound', round)
     },
     createFixture: ({ commit }, round) => {
       commit('createFixture', round)
