@@ -24,7 +24,7 @@ npm run build --report
 
 ## WIP
 - Edit fixtures and matches
-- Delete rounds, edit and delete fixtures
+- Delete fixtures and edit matches
 
 ## License
 MIT
