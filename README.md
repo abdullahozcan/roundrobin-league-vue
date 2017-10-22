@@ -20,7 +20,8 @@ npm run build --report
 ## Dependencies
 - Vuex
 - Vuerouter
-- [Draggable](https://github.com/SortableJS/Vue.Draggable)
+- [Vue.Draggable](https://github.com/SortableJS/Vue.Draggable)
+- [Vue-Select](https://sagalbot.github.io/vue-select/)
 
 ## WIP
 - Edit fixtures and matches
