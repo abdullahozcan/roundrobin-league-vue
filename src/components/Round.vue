@@ -61,7 +61,10 @@
         this.tempName = this.round.name
         this.round.name = ''
       },
-      updateRound () {
+      updateRound (event) {
+        if (event.hasOwnProperty('removed')) {
+          this.removeTeamFromMatches(event.removed.element)
+        }
         this.$store.dispatch('editRound', this.round)
       },
       deleteRound () {
@@ -69,6 +72,20 @@
           this.$store.dispatch('addTeam', team)
         })
         this.$store.dispatch('deleteRound', this.round)
+      },
+      removeTeamFromMatches (team) {
+        let fixtures = this.round.fixtures
+        fixtures.forEach((fixture) => {
+          fixture.matches.forEach((match) => {
+            if (match.home.id === team.id) {
+              match.home = {}
+            }
+            if (match.away.id === team.id) {
+              match.away = {}
+            }
+          })
+        })
+        this.round.fixtures = fixtures
       }
     },
     components: {
