@@ -4,7 +4,10 @@
       <v-select :on-change="changeHomeTeam" v-if="homeNotSelected" label="name" :options="availableTeams"></v-select>
       <span v-else="homeNotSelected">{{ match.home.name }}</span>
     </td>
-    <td></td>
+    <td class="col-2">
+      <span v-if="hasResult">{{ match.score }}</span>
+      <input class="form-input text-center" v-else="hasResult" v-on:keyup.enter="updateResult"/>
+    </td>
     <td class="col-5">
       <v-select :on-change="changeAwayTeam" v-if="awayNotSelected" label="name" :options="availableTeams"></v-select>
       <span v-else>{{ match.away.name }}</span>
@@ -35,11 +38,13 @@
       },
       awayNotSelected () {
         return Object.keys(this.match.away).length === 0
+      },
+      hasResult () {
+        return this.match.score
       }
     },
     mounted () {
       this.teams = this.$parent.$props.teams
-      // TODO available teams could be filtered by popping from teams currently selected teams in siblings
       this.availableTeams = this.teams
     },
     methods: {
@@ -48,6 +53,9 @@
       },
       changeAwayTeam (team) {
         this.match.away = team
+      },
+      updateResult (event) {
+        this.match.score = event.target.value
       }
     },
     components: {

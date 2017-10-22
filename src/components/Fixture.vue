@@ -1,7 +1,7 @@
 <template>
   <div class="fixture panel">
       <div class="panel-header text-center">
-        <div class="panel-title">Day</div>
+        <div class="panel-title">Day {{ index+1 }}</div>
       </div>
       <div class="body">
         <table v-if="!noMatches" class="table table-striped table-hover text-center">
@@ -38,6 +38,10 @@
       },
       teams: {
         type: Array,
+        required: true
+      },
+      index: {
+        type: Number,
         required: true
       }
     },

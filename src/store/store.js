@@ -50,10 +50,9 @@ export default new Vuex.Store({
     },
     createMatch: (state, fixture) => {
       let match = {
-        id: 0,
         home: {},
         away: {},
-        score: {}
+        score: ''
       }
       fixture.matches.push(match)
     }

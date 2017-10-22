@@ -48,10 +48,14 @@
       <div v-for="round in rounds" :key="round.id">
           <h4 class="s-title">Round {{ round.name }}</h4>
           <div class="columns">
-            <div class="column col-sm-12 col-xl-6 col-4" v-for="fixture in round.fixtures">
-              <fixture :key="fixture.id" v-bind:fixtureProp="fixture" v-bind:roundId="round.id" v-bind:teams="round.teams"></fixture>
+            <div class="column col-sm-12 col-xl-6 col-6" v-for="(fixture, index) in round.fixtures">
+              <fixture :key="fixture.id"
+                       v-bind:fixtureProp="fixture"
+                       v-bind:roundId="round.id"
+                       v-bind:teams="round.teams"
+                       v-bind:index="index"></fixture>
             </div>
-            <div class="column col-4 empty">
+            <div class="column col-sm-12 col-xl-6 col-6 empty">
               <div class="empty-icon">
                 <i class="icon icon-plus"></i>
               </div>
