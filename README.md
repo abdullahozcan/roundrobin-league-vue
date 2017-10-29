@@ -1,5 +1,5 @@
 # Round-robin league - Vue.js
-Create rounds, distribute teams among them, add fixtures and matches.
+Create, edit and delete rounds, fixtures and matches.
 
 ## Build Setup
 
@@ -27,9 +27,6 @@ npm run build --report
 - Vuerouter
 - [Vue.Draggable](https://github.com/SortableJS/Vue.Draggable)
 - [Vue-Select](https://sagalbot.github.io/vue-select/)
-
-## WIP
-- Edit matches
 
 ## License
 MIT
