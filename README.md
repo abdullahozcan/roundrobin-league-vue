@@ -29,8 +29,7 @@ npm run build --report
 - [Vue-Select](https://sagalbot.github.io/vue-select/)
 
 ## WIP
-- Edit fixtures and matches
-- Delete fixtures and edit matches
+- Edit matches
 
 ## License
 MIT

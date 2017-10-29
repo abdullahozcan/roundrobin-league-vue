@@ -14,7 +14,8 @@ export default new Vuex.Store({
       { id: 16, name: 'Paris Saint-Germain' }, { id: 17, name: 'Monaco' }, { id: 18, name: 'Atletico Bilbao' }
     ],
     keyword: '',
-    roundIdFilter: 0
+    roundIdFilter: 0,
+    lastFixtureId: 0
   },
   getters: {
     rounds: (state) => {
@@ -52,7 +53,10 @@ export default new Vuex.Store({
       state.rounds = rounds
     },
     createFixture: (state, round) => {
-      let fixture = { matches: [] }
+      let fixture = {
+        id: state.lastFixtureId++,
+        matches: []
+      }
       round.fixtures.push(fixture)
       this.a.dispatch('createMatch', fixture)
     },
@@ -63,6 +67,13 @@ export default new Vuex.Store({
         score: ''
       }
       fixture.matches.push(match)
+    },
+    deleteFixture: (state, {roundId, fixture}) => {
+      let rounds = state.rounds
+      let round = rounds.find((x) => x.id === roundId)
+      let fixtureIndex = round.fixtures.indexOf(fixture)
+      round.fixtures.splice(fixtureIndex, 1)
+      state.rounds = rounds
     }
   },
   actions: {
@@ -83,6 +94,9 @@ export default new Vuex.Store({
     },
     createMatch: ({ commit }, fixture) => {
       commit('createMatch', fixture)
+    },
+    deleteFixture: ({ commit }, payload) => {
+      commit('deleteFixture', payload)
     }
   }
 })

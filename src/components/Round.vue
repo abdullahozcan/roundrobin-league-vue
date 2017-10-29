@@ -62,7 +62,7 @@
         this.round.name = ''
       },
       updateRound (event) {
-        if (event.hasOwnProperty('removed')) {
+        if (event && event.hasOwnProperty('removed')) {
           this.removeTeamFromMatches(event.removed.element)
         }
         this.$store.dispatch('editRound', this.round)

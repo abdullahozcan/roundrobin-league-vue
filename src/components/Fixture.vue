@@ -63,6 +63,9 @@
       ...mapActions([
         'createMatch'
       ]),
+      deleteFixture () {
+        this.$store.dispatch('deleteFixture', {roundId: this.roundId, fixture: this.fixture})
+      },
       deleteMatch (match) {
         let matches = this.fixture.matches
         let index = matches.indexOf(matches.find((x) => x === match))
