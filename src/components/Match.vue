@@ -11,7 +11,7 @@
       <span v-show="!homeNotSelected">{{ match.home.name }}</span>
     </td>
     <td class="col-1">
-      <input class="form-input text-center" v-if="hasNotResult" v-on:keyup.enter="updateResult" :value="tempScore"/>
+      <input class="form-input text-center" v-if="hasNotResult" v-on:keyup.enter="updateResult" :value="tempScore" placeholder="x-x"/>
       <span v-else="hasNotResult">{{ match.score }}</span>
     </td>
     <td class="col-5" v-bind:class="{ selected: !awayEmpty }">
@@ -74,7 +74,13 @@
         this.awayNotSelected = false
       },
       updateResult (event) {
-        this.match.score = event.target.value
+        this.tempScore = event.target.value
+        let pattern = new RegExp('^([0-9]{1,3}-[0-9]{1,3})$|^(n-d)$|^(p-p)$')
+        let result = pattern.test(this.tempScore)
+        if (!result) {
+          return false
+        }
+        this.match.score = this.tempScore
       },
       deleteMe () {
         this.$emit('deleteMe', this.match)

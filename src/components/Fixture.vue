@@ -68,7 +68,7 @@
       },
       deleteMatch (match) {
         let matches = this.fixture.matches
-        let index = matches.indexOf(matches.find((x) => x === match))
+        let index = matches.indexOf(matches.find((x) => x.id === match.id))
         matches.splice(index, 1)
         this.fixture.matches = matches
       }

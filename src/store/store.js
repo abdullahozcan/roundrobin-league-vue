@@ -15,7 +15,8 @@ export default new Vuex.Store({
     ],
     keyword: '',
     roundIdFilter: 0,
-    lastFixtureId: 0
+    lastFixtureId: 0,
+    lastMatchId: 0
   },
   getters: {
     rounds: (state) => {
@@ -62,6 +63,7 @@ export default new Vuex.Store({
     },
     createMatch: (state, fixture) => {
       let match = {
+        id: state.lastMatchId++,
         home: {},
         away: {},
         score: ''
