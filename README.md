@@ -1,6 +1,8 @@
 # Round-robin league - Vue.js
 Create, edit and delete rounds, fixtures and matches.
 
+![Vue round robin league demonstration gif](http://cdn.lucagentile.eu/img/github/vue-round-robin.gif)
+
 ## Build Setup
 
 ``` bash
