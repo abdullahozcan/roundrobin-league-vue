@@ -4,6 +4,11 @@ Create rounds, distribute teams among them, add fixtures and matches.
 ## Build Setup
 
 ``` bash
+# clone repo
+git clone https://github.com/lucagentile/roundrobin-league-vue.git vue-project
+
+cd vue-project
+
 # install dependencies
 npm install
 
