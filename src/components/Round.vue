@@ -1,6 +1,5 @@
 <template>
   <div class="round card">
-    <button class="btn btn-primary delete-btn btn-sm" v-on:click="deleteRound"><i class="icon icon-cross"></i></button>
     <div class="card-header">
       <div class="card-title has-icon-left" v-if="nameEmpty">
         <input class="form-input input-lg" type="text" v-on:keyup.enter="setName" placeholder="Name of the round" :value="tempName" autofocus>
@@ -9,6 +8,7 @@
       <div class="card-title text-center" v-else="nameEmpty">
         <span class="h5">{{ round.name }}</span>
         <button class="btn btn-link btn-action btn-lg" @click="renameTitle"><i class="icon icon-edit"></i></button>
+        <button class="btn btn-link btn-action delete-btn btn-lg" v-on:click="deleteRound"><i class="icon icon-cross"></i></button>
       </div>
     </div>
     <div class="card-body">
@@ -97,15 +97,5 @@
 <style scoped>
   .dragzone {
     min-height: 100px;
-  }
-  .round {
-    position: relative;
-  }
-  .round .delete-btn {
-    font-size: 12px;
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    border-radius: 15px;
   }
 </style>

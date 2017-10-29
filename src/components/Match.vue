@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td class="col-1">
-      <button class="btn btn-primary btn-action btn-sm" v-on:click="deleteMe">
+      <button class="btn btn-link btn-action btn-sm" v-on:click="deleteMe">
         <i class="icon icon-cross"></i>
       </button>
     </td>
